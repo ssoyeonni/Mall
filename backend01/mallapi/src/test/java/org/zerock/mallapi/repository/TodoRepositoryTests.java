@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.zerock.mallapi.entity.Todo;
 
 import java.time.LocalDate;
@@ -65,6 +69,19 @@ public class TodoRepositoryTests {
 
         todoRepository.save(todo);
 
+    }
+
+    @Test
+    public void testPaging() {
+        // 페이지 번호는 0부터 시작
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("tno").descending());
+        // 파라미터가 pageable이면 무조건 page 타입으로 나옴(?)
+
+        Page<Todo> result = todoRepository.findAll(pageable);
+
+        log.info(result.getTotalElements());
+
+        log.info(result.getContent());
 
     }
 
