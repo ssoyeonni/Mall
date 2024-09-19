@@ -71,6 +71,7 @@ public class TodoRepositoryTests {
 
     }
 
+
     @Test
     public void testPaging() {
         // 페이지 번호는 0부터 시작
@@ -84,6 +85,5 @@ public class TodoRepositoryTests {
         log.info(result.getContent());
 
     }
-
 
 }
