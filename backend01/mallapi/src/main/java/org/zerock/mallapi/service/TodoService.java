@@ -1,6 +1,8 @@
 package org.zerock.mallapi.service;
 
 import jakarta.transaction.Transactional;
+import org.zerock.mallapi.dto.PageRequestDTO;
+import org.zerock.mallapi.dto.PageResponseDTO;
 import org.zerock.mallapi.dto.TodoDTO;
 import org.zerock.mallapi.entity.Todo;
 
@@ -8,6 +10,17 @@ import org.zerock.mallapi.entity.Todo;
 public interface TodoService {
 
     TodoDTO get(Long tno);
+
+    // 등록(create)
+    Long register(TodoDTO dto);
+
+    void modify(TodoDTO dto);
+
+    void remove(Long tno);
+
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
+
+
 
     // 엔티티와 DTO를 서로 변환하는 것?
     default TodoDTO entityToDTO(Todo todo) {
